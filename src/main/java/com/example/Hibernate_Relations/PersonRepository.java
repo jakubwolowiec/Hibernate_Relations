@@ -7,4 +7,9 @@ import java.util.Optional;
 public interface PersonRepository extends JpaRepository<Person, Long> {
     @Override
     Optional<Person> findById(Long aLong);
+
+    @Override
+    Person getReferenceById(Long aLong);
+
+
 }

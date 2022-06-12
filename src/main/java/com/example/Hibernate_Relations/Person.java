@@ -1,8 +1,11 @@
 package com.example.Hibernate_Relations;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
 @Entity
+@Proxy(lazy = false)
 public class Person {
 
 
@@ -12,7 +15,10 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(
+            cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER
+    )
     private Address address;
 
     public Person(String firstName, String lastName, Address address){
@@ -47,5 +53,13 @@ public class Person {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
