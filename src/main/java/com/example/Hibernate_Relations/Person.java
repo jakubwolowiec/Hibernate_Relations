@@ -1,9 +1,6 @@
 package com.example.Hibernate_Relations;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Person {
@@ -15,9 +12,13 @@ public class Person {
     private String firstName;
     private String lastName;
 
-    public Person(String firstName, String lastName){
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Address address;
+
+    public Person(String firstName, String lastName, Address address){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
     }
 
     public Person() {
